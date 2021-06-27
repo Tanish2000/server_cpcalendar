@@ -24,7 +24,7 @@ const Contest = require('./model/contestSchema');
 const PORT = process.env.PORT || 5000;
 
 var corsOptions = {
-    origin: ['http://localhost:3000', 'https://cpcalendar.netlify.app/'],
+    origin: ['http://localhost:3000', 'https://cpcalendar.netlify.app'],
     optionsSuccessStatus: 200
 }
 
