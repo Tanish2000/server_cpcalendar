@@ -24,22 +24,15 @@ const Contest = require('./model/contestSchema');
 const PORT = process.env.PORT || 5000;
 
 var corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'https://cpcalendar.netlify.app/'],
     optionsSuccessStatus: 200
 }
 
 app.use(express.json());
 app.use(helmet());
-app.use(cors());
-app.options('*', cors());
+app.use(cors(corsOptions));
 
 
-// if (process.env.NODE_ENV = "production") {
-//     app.use(express.static("client/build"));
-//     app.get("*", (req, res) => {
-//         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-//     })
-// }
 
 app.get('/getContestData', async (req, res) => {
 
