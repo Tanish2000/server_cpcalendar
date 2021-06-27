@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const helmet = require('helmet');
-const cors = require('cors');
+// const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
 const cron = require('node-cron');
@@ -23,15 +23,15 @@ const Contest = require('./model/contestSchema');
 
 const PORT = process.env.PORT || 5000;
 
-var corsOptions = {
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200
-}
+// var corsOptions = {
+//     origin: 'http://localhost:3000',
+//     optionsSuccessStatus: 200
+// }
 
 app.use(express.json());
 app.use(helmet());
-app.use(cors());
-app.options('*', cors());
+// app.use(cors());
+// app.options('*', cors());
 
 
 // if (process.env.NODE_ENV = "production") {
