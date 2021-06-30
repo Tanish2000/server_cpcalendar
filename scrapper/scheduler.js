@@ -9,9 +9,13 @@ const updateContestData = async () => {
 
     try {
 
+        console.log("Started Updating documents....")
         const codechef_data = await getCodechefdata();
+        console.log("Fetched Codechef contests");
         const codeforces_data = await getCodeforcesdata();
+        console.log("Fetched Codeforces contests");
         const leetcode_data = await getLeetCodeData();
+        console.log("Fetched Leetcode contests");
 
         if(codechef_data['status']!=200 || codeforces_data['status']!=200 || leetcode_data['status']!=200)
         {
