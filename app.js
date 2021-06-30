@@ -14,7 +14,7 @@ require('./db/connection');
 
 const updateContestData = require('./scrapper/scheduler');
 
-cron.schedule('*/5 * * * *', () => {
+cron.schedule('*/15 * * * *', () => {
     updateContestData();
 })
 

@@ -1,5 +1,5 @@
     const axios = require('axios');
-    const FormateDate = require('../utility/FormatDates');
+    const FormatDate = require('../utility/FormatDates');
     const FormatTime = require('../utility/FormatTime');
 
     async function getCodechefdata()

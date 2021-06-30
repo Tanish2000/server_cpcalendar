@@ -1,5 +1,6 @@
 const getCodechefdata = require('./codechef');
 const getCodeforcesdata = require('./codeforces');
+const getLeetCodeData = require('./leetcode');
 
 const Contest = require('../model/contestSchema');
 
@@ -10,8 +11,9 @@ const updateContestData = async () => {
 
         const codechef_data = await getCodechefdata();
         const codeforces_data = await getCodeforcesdata();
+        const leetcode_data = await getLeetCodeData();
 
-        if(codechef_data['status']!=200 || codeforces_data['status']!=200)
+        if(codechef_data['status']!=200 || codeforces_data['status']!=200 || leetcode_data['status']!=200)
         {
             if(codeforces_data.message)
                 console.log(codeforces_data.message);
@@ -23,8 +25,14 @@ const updateContestData = async () => {
         var response = codechef_data['codechef_contests'];
         var idx = response.length;
         var codeforces_contest = codeforces_data['codeforces_contests'];
+        var leetcode_contest = leetcode_data['leetcode_contests'];
 
         codeforces_contest.forEach(contest => {
+            contest["_id"] = ++idx;
+            response.push(contest);
+        });
+
+        leetcode_contest.forEach(contest => {
             contest["_id"] = ++idx;
             response.push(contest);
         });
