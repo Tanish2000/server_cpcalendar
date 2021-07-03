@@ -31,7 +31,7 @@
                 temp["start_time"] = FormatTime(element.contest_start_date_iso);
                 temp["end_time"] = FormatTime(element.contest_end_date_iso);
                 temp["hex_color"] = "#A0522D";
-                temp["link"] = "https://www.codechef.com/contests/?itm_medium=navmenu&itm_campaign=allcontests_head"
+                temp["link"] = `https://www.codechef.com/${element.contest_code}?itm_campaign=contest_listing`
 
                 contests.push(temp);
 

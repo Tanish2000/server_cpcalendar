@@ -34,7 +34,8 @@ const getLeetcodeData = async () => {
                 temp['title'] = details[0];
                 temp['start'] = temp['end'] = time[0].trim();
                 temp['start_time'] = time[1].trim();
-                temp['link'] = 'https://leetcode.com/contest/';
+                var contest_link = details[0].replace(/\s/g , "-");
+                temp['link'] = 'https://leetcode.com/contest/' + contest_link.toLowerCase();
                 temp['hex_color'] = "#edaf05"
 
                 result.push(temp)
