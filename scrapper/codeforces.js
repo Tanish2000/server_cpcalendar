@@ -1,7 +1,8 @@
     const cheerio = require('cheerio');
     const axios = require('axios');
-    const FormateDate = require('../utility/FormatDates');
+    const FormatDate = require('../utility/FormatDates');
     const FormatTime = require('../utility/FormatTime');
+    const setEndTime = require('../utility/SetEndtime');
 
 
     async function getCodeforcesData() {
@@ -44,13 +45,17 @@
                         
                     if(j==2)
                     {
-                        temp["start"] = $(all_tds[j]).text().trim();
-                        temp["end"] = $(all_tds[j]).text().trim();
+                        temp["start"] = FormatDate($(all_tds[j]).text().trim());
+                        temp["end"] = FormatDate($(all_tds[j]).text().trim());
                         temp["start_time"] = FormatTime($(all_tds[j]).text().trim());
                     }
                         
                     if(j==3)
-                        temp["contest_duration"] = $(all_tds[j]).text().trim();               
+                    {
+                        const contest_duration = $(all_tds[j]).text().trim(); 
+                        temp["end_time"] = setEndTime(temp["start_time"],contest_duration);
+                    }
+                                      
                     
                 }
 
@@ -65,8 +70,9 @@
 
         } catch (error) {
             return {"status" : 500,
-            "message" : error.message };
+            "error" : error.message };
         }
     }
 
     module.exports =  getCodeforcesData;
+    // getCodeforcesData().then(res =>  console.log(res)).catch(err=> console.log(err));

@@ -1,15 +1,27 @@
-const FormatDates = ( date )=> {
+const convertToISTDate = (date) => {
 
     var dateUTC = new Date(date);
-    var dateUTC = dateUTC.getTime() 
-    var dateIST = new Date(dateUTC);
+    var dateIST = new Date(dateUTC.getTime());
 
-    //date shifting for IST timezone (+5 hours and 30 minutes)
-    dateIST.setHours(dateIST.getHours() + 5); 
+    //shifting time for IST timezone (+5hours and 30minutes)
+    dateIST.setHours(dateIST.getHours() + 5);
     dateIST.setMinutes(dateIST.getMinutes() + 30);
 
-    dateIST = dateIST.toJSON().slice(0,10);
-    return dateIST;
+    return dateIST.toDateString();
 }
 
-module.exports = FormatDates;
+
+const FormatDate = (date) => {
+    var test_date = new Date(date);
+    var ISTdate = convertToISTDate(test_date);
+
+    var sliced_date = ISTdate.split(" ");
+
+    const result = sliced_date[2] + " " + sliced_date[1] + " " + sliced_date[3];
+    
+    return result;
+
+}
+
+module.exports = FormatDate;
+

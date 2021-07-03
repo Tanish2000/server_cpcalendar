@@ -26,8 +26,8 @@
                 temp["_id"] = ++id;
                 temp["platform"] = "Codechef"; 
                 temp["title"] = element.contest_name;
-                temp["start"] = element.contest_start_date;
-                temp["end"] = element.contest_end_date;
+                temp["start"] = FormatDate(element.contest_start_date);
+                temp["end"] = FormatDate(element.contest_end_date);
                 temp["start_time"] = FormatTime(element.contest_start_date_iso);
                 temp["end_time"] = FormatTime(element.contest_end_date_iso);
                 temp["hex_color"] = "#A0522D";
@@ -49,3 +49,4 @@
     }
 
     module.exports = getCodechefdata;
+    

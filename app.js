@@ -14,7 +14,7 @@ require('./db/connection');
 
 const updateContestData = require('./scrapper/scheduler');
 
-cron.schedule('*/15 * * * *', () => {
+cron.schedule('*/10 * * * *', () => {
     updateContestData();
 })
 
@@ -39,7 +39,11 @@ app.get('/getContestData', async (req, res) => {
     try {
         const response = await Contest.find();
         console.log('Data fetched sucessfully');
-        return res.status(200).json({ "status": 200, "contests": response })
+        
+        return res.status(200).json({
+             "status": 200,
+             "total_contests" : response.length,
+             "contests": response })
 
     } catch (err) {
         return res.status(err.code).json({ "error": err.message });

@@ -17,13 +17,14 @@ const updateContestData = async () => {
         const leetcode_data = await getLeetCodeData();
         console.log("Fetched Leetcode contests");
 
-        if(codechef_data['status']!=200 || codeforces_data['status']!=200 || leetcode_data['status']!=200)
-        {
-            if(codeforces_data.message)
-                console.log(codeforces_data.message);
-            if(codechef_data.message)
-                console.log(codechef_data.message)
-            throw ({"message" : "Internal server error" , "code":500});
+        if (codechef_data['status'] != 200 || codeforces_data['status'] != 200 || leetcode_data['status'] != 200) {
+            if (codeforces_data.error)
+                console.log(codeforces_data.error);
+            if (codechef_data.error)
+                console.log(codechef_data.error)
+            if (leetcode_data.error)
+                console.log(leetcode_data.error)
+            throw ({ "message": "Internal server error", "code": 500 });
         }
 
         var response = codechef_data['codechef_contests'];
@@ -41,17 +42,17 @@ const updateContestData = async () => {
             response.push(contest);
         });
 
-        await Contest.deleteMany({}).then(()=> {
+        await Contest.deleteMany({}).then(() => {
             console.log("Deleted Documents")
         })
 
-        await Contest.insertMany(response).then(()=> {
+        await Contest.insertMany(response).then(() => {
             console.log("Updated Documents")
         })
 
     } catch (err) {
         console.log(err);
-    }  
+    }
 
 }
 
