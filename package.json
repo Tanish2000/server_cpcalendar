@@ -1,7 +1,7 @@
 {
   "name": "cpcalender",
   "version": "1.0.0",
-  "description": "",
+  "description": "API that gives back all the upcoming contest on different platforms",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

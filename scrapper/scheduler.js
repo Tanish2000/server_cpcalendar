@@ -1,6 +1,7 @@
 const getCodechefdata = require('./codechef');
 const getCodeforcesdata = require('./codeforces');
 const getLeetCodeData = require('./leetcode');
+const CompareDates = require('../utility/CompareDates');
 
 const Contest = require('../model/contestSchema');
 
@@ -38,8 +39,10 @@ const updateContestData = async () => {
         });
 
         leetcode_contest.forEach(contest => {
-            contest["_id"] = ++idx;
-            response.push(contest);
+            if (CompareDates(contest["start"])) {
+                contest["_id"] = ++idx;
+                response.push(contest);
+            }
         });
 
         await Contest.deleteMany({}).then(() => {
