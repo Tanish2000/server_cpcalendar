@@ -21,7 +21,5 @@ const CompareDates = (givenDate) => {
 
     return m_sec>=-86400000? 1 : 0; //864000000 is the no of mili seconds in a day
 }
-// console.log(CompareDates("04 Jul 2021"));
 
 module.exports = CompareDates;
-

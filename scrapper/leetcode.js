@@ -7,7 +7,7 @@ const setEndTime = require('../utility/SetEndtime');
 const getLeetcodeData = async () => {
     try {
 
-        var browser = await puppeter.launch({ headless: true ,args: ['--no-sandbox']  });
+        var browser = await puppeter.launch({ headless: true });
 
         var page = await browser.newPage();
 
