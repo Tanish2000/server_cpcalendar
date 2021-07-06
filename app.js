@@ -30,7 +30,6 @@ var corsOptions = {
 
 
 //Middlewares
-app.use(express.json());
 app.use(helmet());
 app.use(cors(corsOptions));
 
@@ -52,8 +51,6 @@ app.get('/getContestData', async (req, res) => {
     }
 
 })
-
-
 
 app.listen(PORT, () => {
     console.log("Server running on PORT:", PORT);
