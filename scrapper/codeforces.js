@@ -29,11 +29,13 @@
                 var temp = {};
                 for (let j = 0; j <= 3 ; j++) {
 
+                    const contest_id  = $(all_trs[i]).attr("data-contestid");
+
                     if(j==1) continue;
 
                     temp["platform"] = "Codeforces";
                     temp["hex_color"] = "#212529";
-                    temp["link"] = "https://codeforces.com/contests";
+                    temp["link"] = `https://codeforces.com/contest/${contest_id}`;
 
                     if(j==0)
                     {
