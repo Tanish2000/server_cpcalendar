@@ -1,58 +1,68 @@
 const puppeter = require('puppeteer');
 const FormatDate = require('../utility/FormatDates');
-const setEndTime = require('../utility/SetEndtime');
-
-
 
 const getLeetcodeData = async () => {
     try {
 
-        var browser = await puppeter.launch({ headless: true ,args: ['--no-sandbox']  });
+        var browser = await puppeter.launch({ headless: true, args: ['--no-sandbox'] });
 
         var page = await browser.newPage();
 
-        await page.goto('https://leetcode.com/contest/');
-        await page.waitForSelector("#contest-app > div > div > div.container > div.row.contest-home-body > div.col-sm-7 > div > div > div.contest-table-base > table")
+        await page.goto('https://leetcode.com/contest/' , {waitUntil: 'load', timeout: 0});
+        await page.waitForSelector("#contest-app > div > div > div.container > div.contest-cards-base > div > div")
 
 
         var contests = await page.evaluate(() => {
 
             var result = [];
 
-            var table = document.querySelectorAll('#contest-app > div > div > div.container > div.row.contest-home-body > div.col-sm-7 > div > div > div.contest-table-base > table > tbody.reactable-data > tr');
+            var htmlDOM = $(document.querySelectorAll('#contest-app > div > div > div.container > div.contest-cards-base > div > div')).children();
 
-            table.forEach((ele) => {
+            htmlDOM = htmlDOM.toArray(); 
+ 
 
-                var contest = ele.innerText;
-
-                var details = contest.split('\n');
-                var time = details[1].split('at');
-
+            htmlDOM.forEach((ele)=> {
+                
                 var temp = {};
 
-                temp['platform'] = "Leetcode"
-                temp['title'] = details[0];
-                temp['start'] = temp['end'] = time[0].trim();
-                temp['start_time'] = time[1].trim();
-                var contest_link = details[0].replace(/\s/g , "-");
-                temp['link'] = 'https://leetcode.com/contest/' + contest_link.toLowerCase();
-                temp['hex_color'] = "#edaf05"
+                var contest_data = ele.children[0];
 
-                result.push(temp)
+                temp["platform"] = "Leetcode";
+                temp["title"] =  contest_data.querySelector('.card-title').innerText;
+
+                var contest_details = contest_data.querySelector('.time').innerText;
+
+                temp["start"] = contest_details.split('@')[0].trim();;
+
+                temp["end"] = temp["start"];
+
+                var time = contest_details.split('@')[1].trim().slice(0,17).split('-');
+ 
+                temp["start_time"] = time[0];
+
+                temp["end_time"] = time[1];
+
+                temp['link'] = "https://leetcode.com/contest/" + temp["title"].trim().replaceAll(" ","-").toLowerCase();
+
+                temp["hex_color"] = "#edaf05";  
+
+                result.push(temp);
+
             })
 
-            const final = { "status": 200, "leetcode_contests": result }
-
-            return final;
+            return result;
         })
 
-        contests["leetcode_contests"].forEach(ele => {
+        contests.forEach(ele => {
             ele["end"] = ele["start"] = FormatDate(ele["start"]);
-            ele["end_time"] = setEndTime(ele["start_time"],"01:30");
         })
+
+
+        const final_result = {"status" : 200,
+        "leetcode_contests"  : contests}
 
         await browser.close();
-        return contests;
+        return final_result;
 
     } catch (error) {
         return {
