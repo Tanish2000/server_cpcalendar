@@ -1,5 +1,6 @@
 const puppeter = require('puppeteer');
 const FormatDate = require('../utility/FormatDates');
+const SetEndtime = require("../utility/SetEndtime");
 
 const getLeetcodeData = async () => {
     try {
@@ -38,9 +39,9 @@ const getLeetcodeData = async () => {
 
                 var time = contest_details.split('@')[1].trim().slice(0,17).split('-');
  
-                temp["start_time"] = time[0];
+                temp["start_time"] = time[0].trim();
 
-                temp["end_time"] = time[1];
+                temp["end_time"] = time[1].trim();
 
                 temp['link'] = "https://leetcode.com/contest/" + temp["title"].trim().replaceAll(" ","-").toLowerCase();
 
@@ -55,7 +56,11 @@ const getLeetcodeData = async () => {
 
         contests.forEach(ele => {
             ele["end"] = ele["start"] = FormatDate(ele["start"]);
+            ele["start_time"] = SetEndtime(ele["start_time"],"05:30");
+            ele["end_time"] = SetEndtime(ele["end_time"],"05:30");
         })
+
+
 
 
         const final_result = {"status" : 200,

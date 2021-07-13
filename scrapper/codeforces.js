@@ -1,8 +1,19 @@
     const cheerio = require('cheerio');
     const axios = require('axios');
     const FormatDate = require('../utility/FormatDates');
-    const FormatTime = require('../utility/FormatTime');
     const setEndTime = require('../utility/SetEndtime');
+
+    function hrs24Tohrs12(time) {
+        // Check correct time format and split into components
+        time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+    
+        if (time.length > 1) { // If time format correct
+            time = time.slice(1); // Remove full string match value
+            time[5] = +time[0] < 12 ? ' AM' : ' PM'; // Set AM/PM
+            time[0] = +time[0] % 12 || 12; // Adjust hours
+        }
+        return time.join(''); // return adjusted time or original string
+    }
 
 
     async function getCodeforcesData() {
@@ -49,7 +60,9 @@
                     {
                         temp["start"] = FormatDate($(all_tds[j]).text().trim());
                         temp["end"] = FormatDate($(all_tds[j]).text().trim());
-                        temp["start_time"] = FormatTime($(all_tds[j]).text().trim());
+                        var s_time =  $(all_tds[j]).text().trim();
+                        s_time = hrs24Tohrs12(s_time.slice(12,s_time.length));
+                        temp["start_time"] = setEndTime(s_time,"02:30")
                     }
                         
                     if(j==3)
