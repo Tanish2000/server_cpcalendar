@@ -14,7 +14,7 @@ require('./db/connection');
 
 const updateContestData = require('./scrapper/scheduler');
 
-cron.schedule('*/30 * * * *', () => {
+cron.schedule('*/15 * * * *', () => {
     updateContestData();
 })
 
@@ -39,7 +39,7 @@ app.get('/getContestData', async (req, res) => {
 
     try {
         const response = await Contest.find();
-        console.log('Data fetched sucessfully');
+        console.log('Data fetched sucessfully from : ' , req.ip) ;
         
         return res.status(200).json({
              "status": 200,

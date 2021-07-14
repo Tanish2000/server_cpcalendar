@@ -45,6 +45,12 @@ const updateContestData = async () => {
             }
         });
 
+        const compare = (a,b)=> {
+            return new Date(`${a.start} ${a.start_time}`).getTime() - new Date(`${b.start} ${b.start_time}`).getTime();
+        }
+
+        response = response.sort(compare);
+
         await Contest.deleteMany({}).then(() => {
             console.log("Deleted Documents")
         })
