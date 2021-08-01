@@ -7,6 +7,7 @@ const path = require('path');
 const cron = require('node-cron');
 const ipInfo = require("ipinfo");
 const { getClientIp } = require("@supercharge/request-ip");
+const TodayContest = require('./mailer/todayContest');
 
 
 
@@ -16,7 +17,7 @@ require('./db/connection');
 
 const updateContestData = require('./scrapper/scheduler');
 
-cron.schedule('*/15 * * * *', () => {
+cron.schedule('*/300 * * * *', () => {
     updateContestData();
 })
 
@@ -43,12 +44,14 @@ app.get('/getContestData', async (req, res) => {
         const user_ip = getClientIp(req);
         const location = await ipInfo(user_ip);
         const response = await Contest.find();
+        const todaycontest = await TodayContest();
         console.log('Data fetched sucessfully');
 
         return res.status(200).json({
             "status": 200,
             "total_contests": response.length,
             "contests": response,
+            "today_contest" : todaycontest,
             "user_data" : location
         })
 
