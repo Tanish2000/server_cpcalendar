@@ -50,6 +50,7 @@ app.get('/getContestData', async (req, res) => {
         return res.status(200).json({
             "status": 200,
             "total_contests": response.length,
+            "contests_today": todaycontest.length,
             "contests": response,
             "today_contest" : todaycontest,
             "user_data" : location
