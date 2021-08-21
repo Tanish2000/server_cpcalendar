@@ -15,9 +15,11 @@ dotenv.config({ path: path.resolve(__dirname, './config.env') });
 
 require('./db/connection');
 
+require("./mailer/mailer");
+
 const updateContestData = require('./scrapper/scheduler');
 
-cron.schedule('*/15 * * * *', () => {
+cron.schedule('*/60 * * * *', () => {
     updateContestData();
 })
 
