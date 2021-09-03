@@ -339,8 +339,25 @@ html(xmlns='http://www.w3.org/1999/xhtml' xmlns:o='urn:schemas-microsoft-com:off
                                     tr(style='vertical-align: top;' valign='top')
                                       td(align='center' style='word-break: break-word; vertical-align: top; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px; text-align: center; width: 100%;' valign='top' width='100%')
                                         h3(style="color:#000000;direction:ltr;font-family:'Oswald', Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:22px;font-weight:normal;letter-spacing:normal;line-height:120%;text-align:center;margin-top:0;margin-bottom:0;")
-                                          | #{contest.title} 
+                                          | #{contest.platform}'s #{contest.title} 
                                 .button-container(align='center' style='padding-top:20px;padding-right:0px;padding-bottom:0px;padding-left:0px;')
+                                  //if mso
+                                    table(width='100%' cellpadding='0' cellspacing='0' border='0' style='border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;')
+                                      tbody
+                                        tr
+                                          td(style='padding-top: 20px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px' align='center')
+                                            v:roundrect(xmlns:v='urn:schemas-microsoft-com:vml' xmlns:w='urn:schemas-microsoft-com:office:word' href='http://www.codeforces.com/' style='height:34.5pt;width:134.25pt;v-text-anchor:middle;' arcsize='131%' stroke='false' fillcolor='#b81825')
+                                              w:anchorlock
+                                                v:textbox(inset='0,0,0,0')
+                                                  center(style='color:#ffffff; font-family:Tahoma, sans-serif; font-size:16px')
+                                  a(href=contest.link style='-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #b81825; border-radius: 60px; -webkit-border-radius: 60px; -moz-border-radius: 60px; width: auto; width: auto; border-top: 1px solid #b81825; border-right: 1px solid #b81825; border-bottom: 4px solid #073889; border-left: 1px solid #b81825; padding-top: 5px; padding-bottom: 5px; font-family: Oxygen, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;' target='_blank')
+                                    span(style='padding-left:25px;padding-right:25px;font-size:16px;display:inline-block;letter-spacing:2px;')
+                                      span(style='font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;')
+                                        span(data-mce-style='font-size: 16px; line-height: 32px;' style='font-size: 16px; line-height: 32px;')
+                                          | CONTEST
+                                          | PAGE
+                                  //if mso
+                                  .button-container(align='center' style='padding-top:20px;padding-right:0px;padding-bottom:0px;padding-left:0px;')
                                   //if mso
                                     table(width='100%' cellpadding='0' cellspacing='0' border='0' style='border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;')
                                       tbody
@@ -350,34 +367,13 @@ html(xmlns='http://www.w3.org/1999/xhtml' xmlns:o='urn:schemas-microsoft-com:off
                                               w:anchorlock
                                                 v:textbox(inset='0,0,0,0')
                                                   center(style='color:#ffffff; font-family:Tahoma, sans-serif; font-size:16px')
-                                  a(href=contest.link style='-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #1147a1; border-radius: 60px; -webkit-border-radius: 60px; -moz-border-radius: 60px; width: auto; width: auto; border-top: 1px solid #1147a1; border-right: 1px solid #1147a1; border-bottom: 4px solid #073889; border-left: 1px solid #1147a1; padding-top: 5px; padding-bottom: 5px; font-family: Oxygen, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;' target='_blank')
+                                  a(href=contest.google_calendar_link style='-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #1147a1; border-radius: 60px; -webkit-border-radius: 60px; -moz-border-radius: 60px; width: auto; width: auto; border-top: 1px solid #1147a1; border-right: 1px solid #1147a1; border-bottom: 4px solid #073889; border-left: 1px solid #1147a1; padding-top: 5px; padding-bottom: 5px; font-family: Oxygen, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;' target='_blank')
                                     span(style='padding-left:25px;padding-right:25px;font-size:16px;display:inline-block;letter-spacing:2px;')
                                       span(style='font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;')
                                         span(data-mce-style='font-size: 16px; line-height: 32px;' style='font-size: 16px; line-height: 32px;')
-                                          | CONTEST
-                                          | PAGE
-                                  //if mso
-                                //- .button-container(align='center' style='padding-top:20px;padding-right:0px;padding-bottom:0px;padding-left:0px;')
-                                //-   //if mso
-                                //-     table(width='100%' cellpadding='0' cellspacing='0' border='0' style='border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;')
-                                //-       tbody
-                                //-         tr
-                                //-           td(style='padding-top: 20px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px' align='center')
-                                //-             v:roundrect(xmlns:v='urn:schemas-microsoft-com:vml' xmlns:w='urn:schemas-microsoft-com:office:word' href='http://www.example.com/' style='height:34.5pt;width:159pt;v-text-anchor:middle;' arcsize='131%' stroke='false' fillcolor='#ee340a')
-                                //-               w:anchorlock
-                                //-                 v:textbox(inset='0,0,0,0')
-                                //-                   center(style='color:#ffffff; font-family:Tahoma, sans-serif; font-size:16px')
-                                //-   a(href='http://www.example.com/' style='-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #ee340a; border-radius: 60px; -webkit-border-radius: 60px; -moz-border-radius: 60px; width: auto; width: auto; border-top: 1px solid #ee340a; border-right: 1px solid #ee340a; border-bottom: 4px solid #BF300F; border-left: 1px solid #ee340a; padding-top: 5px; padding-bottom: 5px; font-family: Oxygen, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;' target='_blank')
-                                //-     span(style='padding-left:25px;padding-right:25px;font-size:16px;display:inline-block;letter-spacing:2px;')
-                                //-       span(style='font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;')
-                                //-         span(data-mce-style='font-size: 16px; line-height: 32px;' style='font-size: 16px; line-height: 32px;')
-                                //-           | ADD TO
-                                //-           | CALENDAR
-                                  //if mso
-                                  // [if (!mso)&(!IE)] <!
-                                  // <![endif]
-                                  //if (mso)|(IE)
-                                  //if (mso)|(IE)
+                                          | ADD TO
+                                          | CALENDAR 
+                                  //if mso                                
               .blank_row(style='background-color:transparent;')
                 .block-grid(style='min-width: 320px; max-width: 640px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; Margin: 0 auto; background-color: transparent;')
                   div(style='border-collapse: collapse;display: table;width: 100%;background-color:transparent;')
