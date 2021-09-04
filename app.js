@@ -41,8 +41,6 @@ app.get('/getContestData', async (req, res) => {
         const location = await ipInfo(user_ip);
         const response = await Contest.find();
         const todaycontest = await TodayContest();
-        var date_temp = new Date();
-        console.log()
         console.log('Data fetched sucessfully');
         return res.status(200).json({
             "status": 200,
