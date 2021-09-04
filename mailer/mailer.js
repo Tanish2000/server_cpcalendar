@@ -6,6 +6,8 @@ const notification_mailer = () => {
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
+    host: 'smtp.gmail.com',
+    port : 587,
     auth: {
       user: process.env.MAIL,
       pass: process.env.MAIL_PASS,
@@ -24,7 +26,7 @@ const notification_mailer = () => {
       email.send({
         template: 'contest',
         message: {
-          bcc : ['hopeplasmaofficial@gmail.com' , 'chouhantanish@gmail.com' ,'vinayaks0031@gmail.com']
+          bcc : ['hopeplasmaofficial@gmail.com']
         },
        locals : {
           contests : res, 
