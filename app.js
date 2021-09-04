@@ -14,7 +14,7 @@ dotenv.config({ path: path.resolve(__dirname, './config.env') });
 require('./db/connection');
 
 const mailer = require("./mailer/mailer");
-cron.schedule('06 23 * * *', ()=> {
+cron.schedule('52 17 * * *', ()=> {
     console.log("Emails.")
     mailer();
 })
