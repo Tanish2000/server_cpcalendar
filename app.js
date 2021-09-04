@@ -14,7 +14,7 @@ dotenv.config({ path: path.resolve(__dirname, './config.env') });
 require('./db/connection');
 
 const mailer = require("./mailer/mailer");
-cron.schedule('6 12 * * *', ()=> {
+cron.schedule('35 16 * * *', ()=> {
     console.log("Emails.")
     mailer();
 })
@@ -41,6 +41,8 @@ app.get('/getContestData', async (req, res) => {
         const location = await ipInfo(user_ip);
         const response = await Contest.find();
         const todaycontest = await TodayContest();
+        var date_temp = new Date();
+        console.log()
         console.log('Data fetched sucessfully');
         return res.status(200).json({
             "status": 200,
