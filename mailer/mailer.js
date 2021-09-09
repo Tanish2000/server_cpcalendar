@@ -7,7 +7,7 @@ const notification_mailer = async () => {
 
   const transporter = nodemailer.createTransport(
      nodemailerSendgrid({
-      apiKey: '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'
+      apiKey: ''
     })
   );
 
