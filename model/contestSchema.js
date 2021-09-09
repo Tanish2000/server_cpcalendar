@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const contestSchema = new mongoose.Schema({
+const contestSchema = new mongoose.Schema({  //Document schema for upcoming contests details
     _id :{
         type : Number
     },
@@ -33,6 +33,6 @@ const contestSchema = new mongoose.Schema({
     }
 });
 
-const contest = mongoose.model( 'contest' , contestSchema);
+const contest = mongoose.model( 'contest' , contestSchema); //making schema for document
 
 module.exports = contest;

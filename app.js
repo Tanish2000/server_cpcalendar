@@ -9,24 +9,24 @@ const ipInfo = require("ipinfo");
 const { getClientIp } = require("@supercharge/request-ip");
 const TodayContest = require('./mailer/todayContest');
 
-dotenv.config({ path: path.resolve(__dirname, './config.env') });
+dotenv.config({ path: path.resolve(__dirname, './config.env') }); //including the .env variables
 
-require('./db/connection');
+require('./db/connection'); //making connection with Database
 
-const mailer = require("./mailer/mailer");
-cron.schedule('52 17 * * *', ()=> {
+const mailer = require("./mailer/mailer"); //importing mailer and scheduling
+cron.schedule('56 23 * * *', ()=> {
     console.log("Emails.")
     mailer();
 })
 
-const updateContestData = require('./scrapper/scheduler');
+const updateContestData = require('./scrapper/scheduler'); //importing scrapper and scheduler
 cron.schedule('*/60 * * * *', () => {
     updateContestData();
 })
 
 const Contest = require('./model/contestSchema');
 const PORT = process.env.PORT || 5000;
-var corsOptions = {
+var corsOptions = {  //cors settings
     origin: ['https://cpcalendar.netlify.app', 'http://localhost:3000'],
     optionsSuccessStatus: 200
 }
@@ -35,14 +35,14 @@ var corsOptions = {
 app.use(helmet());
 app.use(cors(corsOptions));
 
-app.get('/getContestData', async (req, res) => {
+app.get('/getContestData', async (req, res) => { //API endpoint to fetch contest data
     try {
         const user_ip = getClientIp(req);
         const location = await ipInfo(user_ip);
         const response = await Contest.find();
         const todaycontest = await TodayContest();
         console.log(`Data fetched sucessfully from ${location.city}`);
-        return res.status(200).json({
+        return res.status(200).json({   //returning contests data
             "status": 200,
             "total_contests": response.length,
             "contests_today" : todaycontest.length,
@@ -51,6 +51,7 @@ app.get('/getContestData', async (req, res) => {
             "user_data" : location
         })
     } catch (err) {
+        //handling errors
         return res.status(err.code).json({ "error": err.message });
     }
 })
