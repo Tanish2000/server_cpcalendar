@@ -7,7 +7,7 @@ const notification_mailer = async () => {
 
   const transporter = nodemailer.createTransport(
      nodemailerSendgrid({
-      apiKey: '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'
+      apiKey: process.env.SENDGRID_API,
     })
   );
 
@@ -16,9 +16,8 @@ const notification_mailer = async () => {
     to: 'chouhantanish@gmail.com',
     subject: 'Upcoming Contests',
     html: '<h1>CpCalendar upcoming contests</h1>'
-  }).then( res => {
-    console.log("Email has been sent")
-  }).catch(err=> console.log(err.message))
+  }).then( res=> console.log("Email has been sent" , res)
+  ).catch(err=> console.log(err.message))
 
 
   // const email = new Email({

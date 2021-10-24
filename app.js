@@ -7,17 +7,17 @@ const path = require('path');
 const cron = require('node-cron');
 const ipInfo = require("ipinfo");
 const { getClientIp } = require("@supercharge/request-ip");
-const TodayContest = require('./mailer/todayContest');
+// const TodayContest = require('./mailer/todayContest');
 
 dotenv.config({ path: path.resolve(__dirname, './config.env') }); //including the .env variables
 
 require('./db/connection'); //making connection with Database
 
-const mailer = require("./mailer/mailer"); //importing mailer and scheduling
-cron.schedule('56 23 * * *', ()=> {
-    console.log("Emails.")
-    mailer();
-})
+// const mailer = require("./mailer/mailer"); //importing mailer and scheduling
+// cron.schedule('57 23 * * *', ()=> {
+//     console.log("Sending emails....")
+//     mailer();
+// })
 
 const updateContestData = require('./scrapper/scheduler'); //importing scrapper and scheduler
 cron.schedule('*/60 * * * *', () => {
