@@ -20,7 +20,7 @@ require('./db/connection'); //making connection with Database
 // })
 
 const updateContestData = require('./scrapper/scheduler'); //importing scrapper and scheduler
-cron.schedule('*/2 * * * *', () => {
+cron.schedule('*/90 * * * *', () => {
     updateContestData();
 })
 
