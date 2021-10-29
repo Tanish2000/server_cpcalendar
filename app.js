@@ -7,7 +7,7 @@ const path = require('path');
 const cron = require('node-cron');
 const ipInfo = require("ipinfo");
 const { getClientIp } = require("@supercharge/request-ip");
-// const TodayContest = require('./mailer/todayContest');
+const TodayContest = require('./mailer/todayContest');
 
 dotenv.config({ path: path.resolve(__dirname, './config.env') }); //including the .env variables
 
@@ -20,7 +20,7 @@ require('./db/connection'); //making connection with Database
 // })
 
 const updateContestData = require('./scrapper/scheduler'); //importing scrapper and scheduler
-cron.schedule('*/60 * * * *', () => {
+cron.schedule('*/2 * * * *', () => {
     updateContestData();
 })
 
@@ -39,6 +39,8 @@ app.get('/getContestData', async (req, res) => { //API endpoint to fetch contest
     try {
         const user_ip = getClientIp(req);
         const location = await ipInfo(user_ip);
+        if(location.city == undefined)
+            location.city = "localhost"
         const response = await Contest.find();
         const todaycontest = await TodayContest();
         console.log(`Data fetched sucessfully from ${location.city}`);
@@ -52,7 +54,7 @@ app.get('/getContestData', async (req, res) => { //API endpoint to fetch contest
         })
     } catch (err) {
         //handling errors
-        return res.status(err.code).json({ "error": err.message });
+        return res.status(err).json({ "error": err.message });
     }
 })
 
