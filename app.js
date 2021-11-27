@@ -23,7 +23,7 @@ cron.schedule('*/60 * * * *', () => {
 const Contest = require('./model/contestSchema');
 const PORT = process.env.PORT || 5000;
 var corsOptions = {  //cors settings
-    origin: ['https://cpcalendar.netlify.app', 'http://localhost:3000'],
+    origin: ['*'],
     optionsSuccessStatus: 200
 }
 
