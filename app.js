@@ -16,7 +16,7 @@ require('./db/connection'); //making connection with Database
 
 
 const updateContestData = require('./scrapper/scheduler'); //importing scrapper and scheduler
-cron.schedule('*/60 * * * *', () => {
+cron.schedule('*/30 * * * *', () => {
     updateContestData();
 })
 
